@@ -50,9 +50,9 @@ if (isset($_GET['logout'])) {
                         </button>
                         <a href="index.php" class="navbar-brand"><img src="images/logo.png" alt="" /></a>
                     </div>
-                    <form class="navbar-form navbar-left web-sh">
+                    <form class="navbar-form navbar-left web-sh" method="post">
                         <div class="form">
-                            <input type="text" class="form-control" placeholder="Tìm sản phẩm">
+                            <input type="text" id="nav-search" class="form-control" placeholder="Tìm sản phẩm">
                         </div>
                     </form>
                 </div>
@@ -111,11 +111,22 @@ if (isset($_GET['logout'])) {
                                 </ul>
                             </div>
                         </div>
+                        <div class="login-sr">
+                            <div class="login-signup">
+                                    <button class="search_button" onclick="search()">Tìm kiếm</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--/.container-fluid -->
     </nav>
+<script>
+    function search() {
+        name = $("#nav-search").val();
+        window.location.assign('category.php?type=all&name='+name);
+    }
+</script>
 </body>
 </html>

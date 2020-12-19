@@ -85,7 +85,7 @@ if (!empty($_POST['action'])) {
                          <?php
                             include('category_controller.php');
                             $category_controller = new CategoryController();
-                            $result = $category_controller->getItems($_GET['type'], $_GET['start'], $_GET['end']);
+                            $result = $category_controller->getItems($_GET['type'], $_GET['start'], $_GET['end'], $_GET['name']);
                             while ($row = mysqli_fetch_array($result)) { ?>
                         <div class="big-box">
                            <div class="big-img-box">

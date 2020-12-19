@@ -1,4 +1,6 @@
-<?php     require_once 'models.php'; ?>
+<?php
+require_once 'models.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -27,63 +29,29 @@
           include 'nav_bar.php';
           ?>
       </header>
-      <!-- Modal -->
-      <div class="modal fade lug" id="myModal" role="dialog">
-         <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Change</h4>
-               </div>
-               <div class="modal-body">
-                  <ul>
-                     <li><a href="#"><img src="images/flag-up-1.png" alt="" /> United States</a></li>
-                     <li><a href="#"><img src="images/flag-up-2.png" alt="" /> France </a></li>
-                  </ul>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div id="sidebar" class="top-nav">
-         <ul id="sidebar-nav" class="sidebar-nav">
-            <li><a href="#">Help</a></li>
-            <li><a href="howitworks.html">How it works</a></li>
-            <li><a href="#">chamb for Business</a></li>
-         </ul>
-      </div>
       <div class="page-content-product">
          <div class="main-product">
             <div class="container">
                <div class="row clearfix">
                   <div class="find-box">
-                     <h1>Find your next product or<br>business partner here.</h1>
-                     <h4>It has never been easier.</h4>
+                     <h1>Tìm kiếm đối tác của bạn ở đây</h1>
+                     <h4>Chưa bao giờ dễ dàng đến thế</h4>
                      <div class="product-sh">
-                        <div class="col-sm-6">
+                        <div class="col-sm-9">
                            <div class="form-sh">
-                              <input type="text" placeholder="Search something you love" >
+                              <input id="index-search" type="text" placeholder="Tìm kiếm sản phẩm" >
                            </div>
                         </div>
                         <div class="col-sm-3">
-                           <div class="form-sh">
-                              <select class="selectpicker">
-                                 <option>Textiles</option>
-                                 <option>Furniture</option>
-                                 <option>Leather</option>
-                              </select>
-                           </div>
+                           <div class="form-sh"> <button onclick="search()" class="btn btn-primary" style="padding: 20px">Tìm kiếm</button> </div>
                         </div>
-                        <div class="col-sm-3">
-                           <div class="form-sh"> <a class="btn" href="#">Search</a> </div>
-                        </div>
-                        <p>Or simply<a href="#"> click here </a> and get inspired!</p>
+                        <p>Hoặc click<a href="category.php?type=all"> vào đây </a></p>
                      </div>
                   </div>
                </div>
                <div class="row clearfix">
                   <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="productpage.php">
+                     <a href="category.php?type=Ghế gỗ">
                         <div class="box-img">
                            <h4>Ghế gỗ</h4>
                            <img src="images/product/1.png" alt="" />
@@ -91,7 +59,7 @@
                      </a>
                   </div>
                   <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="productpage.php">
+                     <a href="category.php?type=Ghế nệm">
                         <div class="box-img">
                            <h4>Ghế nệm</h4>
                            <img src="images/product/2.png" alt="" />
@@ -99,7 +67,7 @@
                      </a>
                   </div>
                   <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="productpage.php">
+                     <a href="category.php?type=Ghế gỗ không tay">
                         <div class="box-img">
                            <h4>Ghế gỗ không tay</h4>
                            <img src="images/product/4.png" alt="" />
@@ -107,7 +75,7 @@
                      </a>
                   </div>
                   <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="productpage.php">
+                     <a href="category.php?type=Sofa">
                         <div class="box-img">
                            <h4>Sofa</h4>
                            <img src="images/product/5.png" alt="" />
@@ -115,7 +83,7 @@
                      </a>
                   </div>
                   <div class="categories_link">
-                     <a href="#">Browse all categories here</a>
+                     <a href="category.php?type=all">Tất cả danh mục</a>
                   </div>
                </div>
             </div>
@@ -128,9 +96,8 @@
                   <div class="panel panel-default">
                      <div class="panel-body">
                         <img src="images/xpann-icon.jpg" class="icon-small" alt="">
-                        <h4>“Chamb” Your Business</h4>
-                        <p>Grow easily with chamb. Create free account.
-                           We help expanding your business easily.
+                        <h4>Dẫn lối</h4>
+                        <p>Nội thất toàn cầu, giá nội địa
                         </p>
                      </div>
                   </div>
@@ -139,9 +106,8 @@
                   <div class="panel panel-default">
                      <div class="panel-body">
                         <img src="images/create-icon.jpg" class="icon-small" alt="">
-                        <h4>Create and add</h4>
-                        <p>Grow easily with chamb. Create free account.
-                           We help expanding your business easily.
+                        <h4>Sáng tạo</h4>
+                        <p>Sáng tạo với vô vàn kiểu dáng khác nhau
                         </p>
                      </div>
                   </div>
@@ -150,9 +116,8 @@
                   <div class="panel panel-default">
                      <div class="panel-body">
                         <img src="images/get-icon.jpg" class="icon-small" alt="">
-                        <h4>Get inspired</h4>
-                        <p>Grow easily with chamb. Create free account.
-                           We help expanding your business easily.
+                        <h4>Ý tưởng</h4>
+                        <p>Cảm hứng là khởi đầu cho mọi ý tưởng
                         </p>
                      </div>
                   </div>
@@ -166,8 +131,7 @@
                <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
                   <div class="exciting_box f_pd">
                      <img src="images/exciting_img-01.jpg" class="icon-small" alt="" />
-                     <h4>Explore <strong>exciting</strong> and exotic products
-                        tailored to you.
+                     <h4>Khám phá những điều <strong>thú vị</strong>
                      </h4>
                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
@@ -178,7 +142,7 @@
                <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                   <div class="exciting_box l_pd">
                      <img src="images/exciting_img-02.jpg" class="icon-small" alt="" />
-                     <h4><strong>List your products on</strong> chamb and grow connections.</h4>
+                     <h4><strong>Trở thành cộng tác viên Chamb</strong> và phát triển sự nghiệp ngay hôm nay</h4>
                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
                         quis nostrud exercitation ullamco laboris..
@@ -196,14 +160,12 @@
                      <div class="free-box-a clearfix">
                         <div class="col-md-6 col-sm-6">
                            <div class="left-a-f">
-                              <h3>A platform built for scale & expansion. Start for free.</h3>
+                              <h3>Một nền tảng bán hàng toàn quốc</h3>
                            </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                            <div class="right-a-f">
-                              <p>Over the comming years, way thet business through the web
-                                 works will change at agreat - and chamb is the
-                                 gamebreaker.
+                              <p>Chamb là nhà phân phối duy nhất mà tôi tin dùng. Sản phẩm của Chamb đã xuất hiện toàn quốc, không ngừng phát triển sang toàn lục địa
                               </p>
                            </div>
                         </div>
@@ -223,16 +185,16 @@
                         </div>
                         <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                            <div class="right-buyer">
-                              <h4>buyer</h4>
-                              <h2>Empower your factory<br>
-                                 <span>With a new lead Channel</span>
+                              <h4>Người mua</h4>
+                              <h2>Đặt hàng ngay<br>
+                                 <span>Với kênh cung cấp uy tín nhất<span>
                               </h2>
                               <p>Never worry about sales or income ftom outbound
                                  channels. with chamb your store is directly
                                  connected to thousands of interested in your
                                  products.
                               </p>
-                              <a href="#">Create a buyer account</a>
+                               <a href="register.php">Tạo tài khoản ngay </a>
                            </div>
                         </div>
                      </div>
@@ -246,15 +208,15 @@
                      <div class="supplier clearfix">
                         <div class="col-md-5 col-sm-6">
                            <div class="left-supplier">
-                              <h4>supplier</h4>
-                              <h2>Grow your store <br><span>With a new sales channel</span></h2>
+                              <h4>Cộng tác viên</h4>
+                              <h2>Phát triển doanh nghiệp <br><span>Theo hướng của bạn</span></h2>
                               <p>Never worry about sales or income ftom outbound
                                  channels. with chamb your store is directly
                                  connected to thousands of interested in your
                                  products.
                               </p>
                               .
-                              <a href="#">Create a supplier account</a>
+                              <a href="#">Trở thành cộng tác viên</a>
                            </div>
                         </div>
                         <div class="col-md-7 col-sm-6">
@@ -270,7 +232,7 @@
       </div>
       <div class="products">
          <div class="main-products">
-            <h2>TRENDING PRODUCTS ON CHAMB</h2>
+            <h2>SẢN PHẨM NỔI BẬT</h2>
             <div class="product-slidr">
                <div class="slider">
                   <div>
@@ -418,6 +380,12 @@
          </div>
       </div>
       <?php include('footer.php') ?>
+      <script>
+          function search() {
+              name = $("#index-search").val();
+              window.location.assign('category.php?type=all&name='+name);
+          }
+      </script>
       <!--main js-->
       <script src="js/jquery-1.12.4.min.js"></script>
       <!--bootstrap js--> 
