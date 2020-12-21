@@ -50,11 +50,13 @@ if (isset($_GET['logout'])) {
                         </button>
                         <a href="index.php" class="navbar-brand"><img src="images/logo.png" alt="" /></a>
                     </div>
+                    <?php if ($_SESSION['logged_in']) { ?>
                     <form class="navbar-form navbar-left web-sh" method="post">
                         <div class="form">
                             <input type="text" id="nav-search" class="form-control" placeholder="Tìm sản phẩm">
                         </div>
                     </form>
+                    <?php } ?>
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <div class="right-nav">
@@ -111,11 +113,13 @@ if (isset($_GET['logout'])) {
                                 </ul>
                             </div>
                         </div>
+                        <?php if ($_SESSION['logged_in']) { ?>
                         <div class="login-sr">
                             <div class="login-signup">
                                     <button class="search_button" onclick="search()">Tìm kiếm</button>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

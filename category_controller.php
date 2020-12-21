@@ -26,5 +26,15 @@ class CategoryController {
         return $result;
     }
 
+    public function getImage($id, $limit = null) {
+        require('connection.php');
+        $id_sql = mysqli_real_escape_string($db, $id);
+        $query = "SELECT * FROM images WHERE items_id = $id_sql";
+        if ($limit) {
+            $query .= " LIMIT $limit";
+        }
+        return mysqli_query($db, $query);
+    }
+
 }
 ?>

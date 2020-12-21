@@ -77,7 +77,7 @@ include('nav_bar.php');
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <a href="#"><i class="fa fa-plus"></i> Thêm mặt hàng mới </a>
+                        <a href="add_new_product.php"><i class="fa fa-plus"></i> Thêm mặt hàng mới </a>
                     </div>
                 </div>
             </div>

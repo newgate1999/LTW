@@ -89,7 +89,7 @@ if (!empty($_POST['action'])) {
                             while ($row = mysqli_fetch_array($result)) { ?>
                         <div class="big-box">
                            <div class="big-img-box">
-                              <img src="images/lag-60.png" alt="#" />
+                              <img src="uploads/<?=mysqli_fetch_assoc($category_controller->getImage($row['id'], 1))['path'] ?>" alt="#" />
                            </div>
                            <div class="big-dit-b clearfix">
                               <div class="col-md-6">
@@ -98,7 +98,7 @@ if (!empty($_POST['action'])) {
                                     <p>Loại: <span><?php echo($row['type']) ?></span></p>
                                     <div class="prod-btn">
                                        <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Lưu vào wishlist </a>
-                                       <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
+                                       <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</a>
                                        <p>23 likes</p>
                                     </div>
                                  </div>

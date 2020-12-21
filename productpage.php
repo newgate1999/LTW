@@ -1,5 +1,5 @@
 <?php
-include('nav_bar.php')
+require_once('models.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,15 +24,22 @@ include('nav_bar.php')
       <link rel="stylesheet" href="css/responsive.css">
    </head>
    <body>
+   <header>
+       <?php include('nav_bar.php');
+       require('item_controller.php');
+       $item_controller = new ItemController();
+       $item = $item_controller->getItem($_GET['id']);
+       ?>
+   </header>
       <div class="terms-conditions product-page">
          <div class="terms-title">
             <div class="container">
                <div class="row">
                   <ol class="breadcrumb">
-                     <li><a href="#">Forntpage </a></li>
-                     <li class="active">Furniture</li>
-                     <li class="active">Sofa</li>
-                     <li><a href="#">All setup Sofa</a></li>
+                     <li><a href="#">Trang chủ </a></li>
+                     <li class="active">Nội thất</li>
+                     <li class="active"><?=$item['type']?></li>
+                     <li><a href="#"><?=$item['name']?></a></li>
                   </ol>
                </div>
             </div>
@@ -43,8 +50,8 @@ include('nav_bar.php')
             <div class="row">
                <div class="col-md-12">
                   <div class="prod-page-title">
-                     <h2>All setup Sofa</h2>
-                     <p>By <span>Dex Morgan Mobilya</span></p>
+                     <h2><?=$item['name']?></h2>
+                     <p>Nhập khẩu từ <span>Đức</span></p>
                   </div>
                </div>
             </div>
@@ -54,25 +61,32 @@ include('nav_bar.php')
                      <div class="md-prod-page-in">
                         <div class="page-preview">
                            <div class="preview">
-                              <div class="preview-pic tab-content">
-                                 <div class="tab-pane active" id="pic-1"><img src="images/lag-60.png" alt="#" /></div>
-                                 <div class="tab-pane" id="pic-2"><img src="images/lag-61.png" alt="#" /></div>
-                                 <div class="tab-pane" id="pic-3"><img src="images/lag-60.png" alt="#" /></div>
-                                 <div class="tab-pane" id="pic-4"><img src="images/lag-61.png" alt="#" /></div>
-                              </div>
-                              <ul class="preview-thumbnail nav nav-tabs">
-                                 <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="images/lag-60.png" alt="#" /></a></li>
-                                 <li><a data-target="#pic-2" data-toggle="tab"><img src="images/lag-61.png" alt="#" /></a></li>
-                                 <li><a data-target="#pic-3" data-toggle="tab"><img src="images/lag-60.png" alt="#" /></a></li>
-                                 <li><a data-target="#pic-4" data-toggle="tab"><img src="images/lag-61.png" alt="#" /></a></li>
+                               <div class="preview-pic tab-content">
+                               <?php
+                               require_once('category_controller.php');
+                               $category_controller = new CategoryController();
+                               $i = 0;
+                               $result = $category_controller->getImage($_GET['id'], 4);
+                               while ($row = mysqli_fetch_array($result)) { ?>
+                                     <div class="tab-pane <?php if ($i === 0) echo 'active';?>" id="pic-<?=$i+1?>"><img src="uploads/<?=$row['path']?>" alt="#" /></div>
+                                   <?php $i ++;} ?>
+                               </div>
+                               <ul class="preview-thumbnail nav nav-tabs">
+                               <?php
+                               $i = 0;
+                               $result = $category_controller->getImage($_GET['id'], 5);
+                               while ($row = mysqli_fetch_array($result)) { ?>
+                                     <li <?php if ($i === 0) echo 'class="active"'?>>
+                                         <a data-target="#pic-<?=$i+1?>" data-toggle="tab"><img src="uploads/<?=$row['path']?>" alt="#" style="width: 192px; height: 102px"/></a></li>
+                               <?php $i++;} ?>
                               </ul>
                            </div>
                         </div>
                         <div class="btn-dit-list clearfix">
                            <div class="left-dit-p">
                               <div class="prod-btn">
-                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist</a>
-                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
+                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Lưu vào wishlist</a>
+                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</a>
                                  <p>23 likes</p>
                               </div>
                            </div>
@@ -107,81 +121,53 @@ include('nav_bar.php')
                      </div>
                      <div class="description-box">
                         <div class="dex-a">
-                           <h4>Description</h4>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                              when an unknown printer took a galley of type and scrambled it to make a 
-                              type specimen book..
+                           <h4>Mô tả</h4>
+                           <p><?=$item['description']?>
                            </p>
                            <br>
-                           <p>Small: H 25 cm / &Oslash; 12 cm</p>
-                           <p>Large H 24 cm / &Oslash; 25 cm</p>
+                           <p>Kích cỡ: Dài <?=$item['width']?> / Cao <?=$item['height']?></p>
                         </div>
                         <div class="spe-a">
-                           <h4>Specifications</h4>
+                           <h4>Thông số</h4>
                            <ul>
                               <li class="clearfix">
                                  <div class="col-md-4">
-                                    <h5>Measurments</h5>
+                                    <h5>Kích cỡ</h5>
                                  </div>
                                  <div class="col-md-8">
-                                    <p>H25 cm / 0 12 cm and H 24 cm / 0 25 cm</p>
+                                    <p>Dài <?=$item['width']?> /  <?=$item['height']?> </p>
                                  </div>
                               </li>
                               <li class="clearfix">
                                  <div class="col-md-4">
-                                    <h5>Material</h5>
+                                    <h5>Chất liệu</h5>
                                  </div>
                                  <div class="col-md-8">
-                                    <p>Material Name</p>
+                                    <p><?=$item['material']?></p>
                                  </div>
                               </li>
                               <li class="clearfix">
                                  <div class="col-md-4">
-                                    <h5>Wire</h5>
+                                    <h5>Nhập khẩu từ/h5>
                                  </div>
                                  <div class="col-md-8">
-                                    <p>Wire Name</p>
+                                    <p><?=$item['imported_from'] ?></p>
                                  </div>
                               </li>
                               <li class="clearfix">
                                  <div class="col-md-4">
-                                    <h5>Comdition</h5>
+                                    <h5>Giao hàng</h5>
                                  </div>
                                  <div class="col-md-8">
-                                    <p>Brand new</p>
+                                    <p>Toàn quốc</p>
                                  </div>
                               </li>
                               <li class="clearfix">
                                  <div class="col-md-4">
-                                    <h5>SKU number</h5>
+                                    <h5>Bảo hành</h5>
                                  </div>
                                  <div class="col-md-8">
-                                    <p>SKU number</p>
-                                 </div>
-                              </li>
-                              <li class="clearfix">
-                                 <div class="col-md-4">
-                                    <h5>Shipping</h5>
-                                 </div>
-                                 <div class="col-md-8">
-                                    <p>Shipping worldwide</p>
-                                 </div>
-                              </li>
-                              <li class="clearfix">
-                                 <div class="col-md-4">
-                                    <h5>Warranty</h5>
-                                 </div>
-                                 <div class="col-md-8">
-                                    <p>1 years</p>
-                                 </div>
-                              </li>
-                              <li class="clearfix">
-                                 <div class="col-md-4">
-                                    <h5>Delivery</h5>
-                                 </div>
-                                 <div class="col-md-8">
-                                    <p>Choose country</p>
+                                    <p><?=$item['warranty'];?> năm</p>
                                  </div>
                               </li>
                            </ul>
@@ -189,8 +175,13 @@ include('nav_bar.php')
                      </div>
                   </div>
                   <div class="similar-box">
-                     <h2>Similiar products from Morgan Mobilya</h2>
+                     <h2>Sản phẩm tương tự</h2>
                      <div class="row cat-pd">
+                         <?php
+                         $result = $category_controller->getItems($item['type'], null, null, null);
+                         while ($row = mysqli_fetch_array($result)) {
+                             if ($row['id'] !== $item['id']) {
+                         ?>
                         <div class="col-md-6">
                            <div class="small-box-c">
                               <div class="small-img-b">
@@ -198,111 +189,29 @@ include('nav_bar.php')
                               </div>
                               <div class="dit-t clearfix">
                                  <div class="left-ti">
-                                    <h4>Product</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
+                                    <h4><?=$row['name']?></h4>
+                                    <p>Nhập khẩu từ <span><?=$row['imported_from']?></span></p>
                                  </div>
-                                 <a href="#" tabindex="0">$1220</a>
+                                 <a href="#" tabindex="0"><?=$row['price']?> đ</a>
                               </div>
                               <div class="prod-btn">
-                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist</a>
-                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
+                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Lưu vào wishlist</a>
+                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like </a>
                                  <p>23 likes</p>
                               </div>
                            </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="small-box-c">
-                              <div class="small-img-b">
-                                 <img class="img-responsive" src="images/tr2.png" alt="#" />
-                              </div>
-                              <div class="dit-t clearfix">
-                                 <div class="left-ti">
-                                    <h4>Product</h4>
-                                    <p>By <span>Beko</span> under <span>Chairs</span></p>
-                                 </div>
-                                 <a href="#" tabindex="0">$1220</a>
-                              </div>
-                              <div class="prod-btn">
-                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist</a>
-                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                                 <p>23 likes</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row cat-pd">
-                        <div class="col-md-6">
-                           <div class="small-box-c">
-                              <div class="small-img-b">
-                                 <img class="img-responsive" src="images/tr3.png" alt="#" />
-                              </div>
-                              <div class="dit-t clearfix">
-                                 <div class="left-ti">
-                                    <h4>Product</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                 </div>
-                                 <a href="#" tabindex="0">$1220</a>
-                              </div>
-                              <div class="prod-btn">
-                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist</a>
-                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                                 <p>23 likes</p>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="small-box-c">
-                              <div class="small-img-b">
-                                 <img class="img-responsive" src="images/tr4.png" alt="#" />
-                              </div>
-                              <div class="dit-t clearfix">
-                                 <div class="left-ti">
-                                    <h4>Product</h4>
-                                    <p>By <span>Beko</span> under <span>Chairs</span></p>
-                                 </div>
-                                 <a href="#" tabindex="0">$1220</a>
-                              </div>
-                              <div class="prod-btn">
-                                 <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist</a>
-                                 <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                                 <p>23 likes</p>
-                              </div>
-                           </div>
-                        </div>
+                            </div>
+                       <?php }
+                         }?>
                      </div>
                   </div>
                </div>
                <div class="col-md-3 col-sm-12">
                   <div class="price-box-right">
-                     <h4>Price</h4>
-                     <h3>$1.320 <span>pr.peice</span></h3>
-                     <p>Option</p>
-                     <select class="form-control select2">
-                        <option>Flying Carpet Green rug</option>
-                        <option value="AK">Alaska</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="CA">California</option>
-                        <option value="NV">Nevada</option>
-                        <option value="OR">Oregon</option>
-                        <option value="WA">Washington</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="CO">Colorado</option>
-                        <option value="ID">Idaho</option>
-                        <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NM">New Mexico</option>
-                        <option value="ND">North Dakota</option>
-                        <option value="UT">Utah</option>
-                        <option value="WY">Wyoming</option>
-                        <option value="AL">Alabama</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IA">Iowa</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                     </select>
-                     <a href="#">Đặt hàng</a>
-                     <h5><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>16 hours</strong> avg. responsive time</h5>
+                     <h4>Giá bán</h4>
+                     <h3><?=$item['price']?> đ <span>một bộ</span></h3>
+                     <button onclick="add_to_cart(<?=$item['id']?>)">Thêm vào giỏ hàng</button>
+                     <h5><i class="fa fa-clock-o" aria-hidden="true"></i> Giao hàng trong <strong>1 ngày</strong></h5>
                   </div>
                </div>
             </div>
