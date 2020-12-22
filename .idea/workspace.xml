@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f28aeac-a802-4ca3-bd8d-d88a0782c52e" name="Default Changelist" comment="Added images and add new items functions">
+    <list default="true" id="9f28aeac-a802-4ca3-bd8d-d88a0782c52e" name="Default Changelist" comment="Final commit">
       <change afterPath="$PROJECT_DIR$/auth.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/uploads/0_50.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/uploads/0_51.jpg" afterDir="false" />
@@ -110,7 +110,7 @@
       <workItem from="1608480964115" duration="1206000" />
       <workItem from="1608485316944" duration="10687000" />
       <workItem from="1608541316827" duration="20463000" />
-      <workItem from="1608607755540" duration="2124000" />
+      <workItem from="1608607755540" duration="2192000" />
     </task>
     <task id="LOCAL-00001" summary="Finalized all main functionalities">
       <created>1608400192601</created>
@@ -126,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608541419909</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Final commit">
+      <created>1608609938785</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608609938785</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +155,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Finalized all main functionalities" />
     <MESSAGE value="Added images and add new items functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added images and add new items functions" />
+    <MESSAGE value="Final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final commit" />
   </component>
 </project>
