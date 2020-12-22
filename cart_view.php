@@ -94,7 +94,7 @@ if (!empty($_POST['action'])) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-location-arrow"></i> Địa chỉ người nhận: </span>
                             </div>
-                            <textarea class="form-control" placeholder="Địa chỉ nhận hàng" type="text" id="recipient_address"></textarea>
+                            <textarea class="form-control" required="required" placeholder="Địa chỉ nhận hàng" type="text" id="recipient_address"></textarea>
                         </div> <!-- form-group// -->
                     </div>
             </div>
@@ -163,8 +163,14 @@ if (!empty($_POST['action'])) {
                     queryString = 'action='+action+'&id='+ id;
                     break;
                 case "place_order":
-                    queryString = 'action='+action+'&recipient_name='+$('#recipient_name').val()+'&recipient_phone='+$('#recipient_phone').val()+
-                        '&recipient_address='+$('#recipient_address').val();
+                    if ($('#recipient_name').val() === '' || $('#recipient_phone').val() === '' || $('#recipient_address').val() === '' )
+                        alert("Điền đầy đủ thông tin");
+                    else if ($('#recipient_phone').val().match(/^\d{10,}$/) === null)
+                        alert("Sai định dạng số điện thoại. Số điện thoại chỉ được phép chứa các kí tự số")
+                    else {
+                        queryString = 'action=' + action + '&recipient_name=' + $('#recipient_name').val() + '&recipient_phone=' + $('#recipient_phone').val() +
+                            '&recipient_address=' + $('#recipient_address').val();
+                    }
                     break;
             }
         }
@@ -176,7 +182,7 @@ if (!empty($_POST['action'])) {
                 $("#cart-badge").load(location.href + " #cart-badge > *");
                 $("#cart-items-col-div").load(location.href + " #cart-items-col-div > *");
 
-                if (action === "place_order") {
+                if (action === "place_order" && $('#recipient_name').val() !== '' && $('#recipient_phone').val() !== '' && $('#recipient_address').val() !== '' && $('#recipient_phone').val().match(/^\d{10,}$/) !== null) {
                     window.location.replace('category.php?type=all');
                 }
             },

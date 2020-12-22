@@ -24,7 +24,7 @@
                                 <h2>Trở thành đối tác</h2>
                                 <ul>
                                     <li><a href="#">Tạo tài khoản</a></li>
-                                    <li><a href="howitworks.html">Điều khoản</a></li>
+                                    <li><a href="howitworks.php">Điều khoản</a></li>
                                     <li><a href="pricing.html">Pricing</a></li>
                                     <li><a href="#">FAQ for Suppliers</a></li>
                                 </ul>
@@ -41,7 +41,7 @@
                             <div class="col-sm-4">
                                 <h2>Liên hệ</h2>
                                 <ul>
-                                    <li><a href="about-us.html">Giới thiệu</a></li>
+                                    <li><a href="about-us.php">Giới thiệu</a></li>
                                     <li><a href="#">Liên lạc chúng tôi</a></li>
                                 </ul>
                             </div>

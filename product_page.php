@@ -217,7 +217,7 @@ if (!empty($_POST['action'])) {
                                     <p>Nhập khẩu từ <span><?=$row['imported_from']?></span></p>
                                  </div>
                                   <div style="text-align: right">
-                                      <p style="color: black; font-size: 14px; font-weight: light"><strong>Giá: <?=$row['price']?> đ</strong> </p>
+                                      <p style="color: black; font-size: 14px;"><strong>Giá: <?=$row['price']?> đ</strong> </p>
                                   </div>
                               </div>
                             </a>

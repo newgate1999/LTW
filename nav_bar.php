@@ -66,7 +66,7 @@ if (isset($_GET['logout'])) {
                                     <ul>
                                         <li> <a href="category.php?type=all"> <span>Danh mục sản phẩm</span> </a> </li>
                                         <li><a href="login.php">Đăng nhập</a></li>
-                                        <li><a class="custom-b" href="#">Đăng kí</a></li>
+                                        <li><a class="custom-b" href="register.php">Đăng kí</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ if (isset($_GET['logout'])) {
                         <div class="nav-b hidden-xs" id="cart-div">
                             <div class="nav-box" id="cart-badge">
                                 <ul>
-                                    <li><a class="custom-b" href="dashboard.php">Xin chào <?php echo $_SESSION['user']->getName(); ?></a></li>
+                                    <li><a class="custom-b" <?php if ($_SESSION['user']->getRole() === 'admin') echo "href='dashboard.php'" ?>>Xin chào <?php echo $_SESSION['user']->getName(); ?></a></li>
                                     <li>
                                         <a class="custom-b" href="cart_view.php">
                                             <i class="fa fa-shopping-cart"></i>
@@ -101,15 +101,15 @@ if (isset($_GET['logout'])) {
                         <div class="help-r hidden-xs">
                             <div class="help-box">
                                 <ul>
-                                    <li> <a href="#"><img class="h-i" src="images/help-icon.png" alt="" /> Trợ giúp </a> </li>
+                                    <li> <a href="cms.php"><img class="h-i" src="images/help-icon.png" alt="" /> FAQ </a> </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="nav-b hidden-xs">
                             <div class="nav-box">
                                 <ul>
-                                    <li><a href="howitworks.html">Điều khoản</a></li>
-                                    <li><a href="about-us.html">Trở thành cộng tác viên</a></li>
+                                    <li><a href="howitworks.php">Điều khoản</a></li>
+                                    <li><a href="about-us.php">Trở thành cộng tác viên</a></li>
                                 </ul>
                             </div>
                         </div>

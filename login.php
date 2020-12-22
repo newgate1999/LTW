@@ -1,5 +1,10 @@
 <?php
     require_once('models.php');
+    session_start();
+    if (isset($_SESSION['user'])) {
+        header("Location: index.php");
+        exit();
+    }
     include('login_controller.php');
     include('nav_bar.php');
 ?>

@@ -120,6 +120,7 @@ if (!empty($_POST['action'])) {
                         $result = mysqli_query($db,"SELECT * FROM orders 
                                                             INNER JOIN order_logs ON orders.id = order_logs.orders_id 
                                                             INNER JOIN statuses ON order_logs.status_id = statuses.id
+                                                            INNER JOIN users ON orders.user_id = users.id                                                            
                                                             WHERE order_logs.id = $log_id");
                         $row = mysqli_fetch_assoc($result);
                         $status = $row['status_name'];
@@ -139,7 +140,7 @@ if (!empty($_POST['action'])) {
                             <p>Trạng thái: <?=$row['status_name']?></p>
                             <p>Địa chỉ: <?=$row['address'] ?></p>
                             <p>SĐT: <?=$row['recipient_phone'] ?></p>
-                            <p>Email: <?=$_SESSION['user']->getEmail() ?></p>
+                            <p>Email: <?=$row['email'] ?></p>
                         </div>
 
                         <div class="col-sm-4 text-right payment-details">
