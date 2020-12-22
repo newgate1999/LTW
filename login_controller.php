@@ -20,6 +20,7 @@ if (isset($_POST["username"])) {
             $_SESSION['user']->setName($user['name']);
             $_SESSION['user']->setEmail($user['email']);
             $_SESSION['user']->setPhone($user['phone']);
+            $_SESSION['user']->setRole($user['role']);
             $_SESSION['logged_in'] = true;
             $_SESSION['name'] = $result->fetch_assoc()['name'];
             $message = "Đăng nhập thành công";
@@ -29,6 +30,7 @@ if (isset($_POST["username"])) {
 
 
         header("Location: index.php");
+        exit();
     }
     else {
        $message = "Không thể tìm thấy tài khoản";

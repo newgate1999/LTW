@@ -1,4 +1,5 @@
 <?php
+    require_once('models.php');
     include('login_controller.php');
     include('nav_bar.php');
 ?>

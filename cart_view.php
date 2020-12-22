@@ -3,6 +3,10 @@ require_once('cart_controller.php');
 require_once('models.php');
 require_once('order_controller.php');
 
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+}
+
 if (!empty($_POST['action'])) {
     $cart_controller = new CartController();
     if (isset($_POST['id']))
@@ -48,7 +52,9 @@ if (!empty($_POST['action'])) {
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body style="background: #f4f9fd">
-<?php include('nav_bar.php')?>
+<header>
+    <?php include('nav_bar.php')?>
+</header>
 <div class="furniture-box">
     <div class="terms-title">
         <div class="container">
@@ -105,32 +111,36 @@ if (!empty($_POST['action'])) {
             else {
             $cart = $_SESSION['cart'];
             ?>
-                <div class="cart-list row" id="cart-items-div">
+                <div class="cart-list" id="cart-items-div">
                 <ul>
                         <?php foreach ($cart->items as $item) {?>
                         <li>
-                            <div class="col-sm-6">
-                                <img  style="padding-top: 15px" src="images/lag-60.png" alt="img" width="150px">
-                                <a href="#" style="padding: 30px">
-                                    <?php echo($item['item']['name'])?>
-                                </a>
-                            </div>
-                            <div class="col-sm-6" style="text-align: right">
-                                    <button style="border: 0 transparent; background: transparent">
-                                        <i class="fa fa-minus-circle" onClick="action('remove_from_cart', '<?php echo($item['item']['id'])?>')"></i>
-                                    </button>
-                                    <span>
-                                    Số lượng: <?php echo($item['quantity']) ?>
-                                </span>
-                                    <button style="border: 0 transparent; background: transparent" onClick="action('add', '<?php echo($item['item']['id'])?>')">
-                                        <i class="fa fa-plus-circle"></i>
-                                    </button>
-                                    <span>
-                                    Tổng giá: <?php echo($item['price']) ?> đ
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span class="helper">
+                                    <a href="#" >
+                                        <img src="images/lag-60.png" alt="img">
+                                        <?php echo($item['item']['name'])?>
+                                    </a>
                                     </span>
-                                    <button type="submit" class="btn btn-danger" onClick="action('remove_from_array', '<?php echo($item['item']['id'])?>')">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                                </div>
+                                <div class="col-sm-6" style="text-align: right">
+                                        <button style="border: 0 transparent; background: transparent">
+                                            <i class="fa fa-minus-circle" onClick="action('remove_from_cart', '<?php echo($item['item']['id'])?>')"></i>
+                                        </button>
+                                        <span>
+                                        Số lượng: <?php echo($item['quantity']) ?>
+                                    </span>
+                                        <button style="border: 0 transparent; background: transparent" onClick="action('add', '<?php echo($item['item']['id'])?>')">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </button>
+                                        <span>
+                                        Tổng giá: <?php echo($item['price']) ?> đ
+                                        </span>
+                                        <button type="submit" class="btn btn-danger" onClick="action('remove_from_array', '<?php echo($item['item']['id'])?>')">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                </div>
                             </div>
                         </li>
                         <?php }?>
@@ -164,15 +174,18 @@ if (!empty($_POST['action'])) {
             type: "POST",
             success:function(data){
                 $("#cart-badge").load(location.href + " #cart-badge > *");
-                $("#cart-items-col-div").load(location.href + " #cart-items-col-div > *");XoXo
+                $("#cart-items-col-div").load(location.href + " #cart-items-col-div > *");
 
                 if (action === "place_order") {
-                    window.location.replace('category.php');
+                    window.location.replace('category.php?type=all');
                 }
             },
             error:function (){}
         });
     }
 </script>
+
+
 </body>
+
 </html>

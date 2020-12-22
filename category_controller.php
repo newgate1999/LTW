@@ -36,5 +36,17 @@ class CategoryController {
         return mysqli_query($db, $query);
     }
 
+    public function delete_item($id) {
+        require('connection.php');
+        require_once('models.php');
+        $id_sql = mysqli_real_escape_string($db, $id);
+        $images = $this->getImage($id);
+
+        while ($row = mysqli_fetch_array($images)) {
+            unlink('uploads/'.$row['path']);
+        }
+        $result = mysqli_query($db, "DELETE FROM items WHERE id = $id_sql");
+
+    }
 }
 ?>

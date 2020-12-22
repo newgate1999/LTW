@@ -223,7 +223,7 @@ if (!empty($_POST['action'])) {
                                 type: "POST",
                                 success:function(data){
                                     $("#cart-badge").load(location.href + " #cart-badge > *");
-                                    window.location.replace("invoice.php");
+                                    window.location.assign("invoice.php");
                                 },
                                 error:function (){}
                             });

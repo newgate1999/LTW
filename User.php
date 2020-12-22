@@ -1,7 +1,23 @@
 <?php
 
 class User {
-    private $id, $name, $username, $password, $email, $phone;
+    private $id, $name, $username, $password, $email, $phone, $role;
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
 
     /**
      * @return mixed

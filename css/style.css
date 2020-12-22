@@ -2412,11 +2412,20 @@ html .ui-button.ui-state-disabled:active {
 .right-list-f {
 	padding: 0px;
 }
+.cart-list {
+	padding: 0px;
+}
 
 .right-list-f ul {
 	margin: 0px;
 	padding: 0px;
 }
+
+.cart-list ul {
+	margin: 0px;
+	padding: 0px;
+}
+
 
 .right-list-f ul li {
 	background: #ffffff;
@@ -2436,7 +2445,19 @@ html .ui-button.ui-state-disabled:active {
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+.cart-list ul li {
+	background: #ffffff;
+	-webkit-box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+	padding: 10px 10px 20px 10px;
+	margin-bottom: 20px;
+
+}
 .right-list-f ul li a {
+	color: #333;
+	font-size: 15px;
+}
+.cart-list ul li a {
 	color: #333;
 	font-size: 15px;
 }
@@ -2444,6 +2465,11 @@ html .ui-button.ui-state-disabled:active {
 .right-list-f ul li a img {
 	margin-right: 5px;
 	margin-left: 5px;
+}
+.cart-list ul li a img {
+	margin-right: 5px;
+	margin-left: 5px;
+	width: 30%;
 }
 
 .furniture-middle {
@@ -3419,7 +3445,7 @@ html .ui-button.ui-state-disabled:active {
 	text-align: center;
 }
 
-.price-box-right button {
+.price-box-right-button {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00cb96+0,00be8e+100 */
 	background: #00cb96;
 	/* Old browsers */

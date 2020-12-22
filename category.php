@@ -10,6 +10,7 @@ if (!empty($_POST['action'])) {
     }
 }
 ?>
+
 <html lang="en">
    <head>
       <meta charset="UTF-8">
@@ -33,6 +34,8 @@ if (!empty($_POST['action'])) {
        <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
    </head>
    <body>
+   <div id="fb-root"></div>
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=247099903415355&autoLogAppEvents=1" nonce="bYlkuGdh"></script>
       <!-- Modal -->
       <?php include('nav_bar.php'); ?>
       <div class="furniture-box">
@@ -89,50 +92,22 @@ if (!empty($_POST['action'])) {
                             while ($row = mysqli_fetch_array($result)) { ?>
                         <div class="big-box">
                            <div class="big-img-box">
-                              <img src="uploads/<?=mysqli_fetch_assoc($category_controller->getImage($row['id'], 1))['path'] ?>" alt="#" />
+                              <img src="uploads/<?=mysqli_fetch_assoc($category_controller->getImage($row['id'], 1))['path'] ?>" alt="#" style="width: 531px; height: 216px"/>
                            </div>
                            <div class="big-dit-b clearfix">
                               <div class="col-md-6">
                                  <div class="left-big">
                                     <h3> <?php echo($row['name']) ?> </h3>
                                     <p>Loại: <span><?php echo($row['type']) ?></span></p>
-                                    <div class="prod-btn">
-                                       <a href="#"><i class="fa fa-star" aria-hidden="true"></i> Lưu vào wishlist </a>
-                                       <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</a>
-                                       <p>23 likes</p>
-                                    </div>
                                  </div>
+                                  <div class="fb-like" data-href="http://localhost:8000/index.php" data-width="100" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+
                               </div>
                               <div class="col-md-6">
                                  <div class="right-big-b">
                                     <div class="tight-btn-b clearfix">
-                                       <a class="view-btn" href="productpage.php?id=<?php echo $row['id']?>">Xem chi tiết</a>
+                                       <a class="view-btn" href="product_page.php?id=<?php echo $row['id']?>">Xem chi tiết</a>
                                        <button id="add-item_<?php echo($row['id'])?>" onClick="action('add', '<?php echo($row['id'])?>')" type="submit"><?php echo($row['price'])?> đ</button>
-                                    </div>
-                                    <div class="like-list">
-                                       <ul>
-                                          <li>
-                                             <div class="im-b"><img class="" src="images/list-img-01.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><img src="images/list-img-02.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><img src="images/list-img-03.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><img src="images/list-img-04.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><img src="images/list-img-05.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><img src="images/list-img-06.png" alt="" /></div>
-                                          </li>
-                                          <li>
-                                             <div class="im-b"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-                                          </li>
-                                       </ul>
                                     </div>
                                  </div>
                               </div>
@@ -192,7 +167,7 @@ if (!empty($_POST['action'])) {
          		    echo("$start, $end");
          		    }
          		else {
-         		    echo('158, 1230');
+         		    echo('1, 10000000');
          		    } ?>],
          		slide: function( event, ui ) {
          			$( "#amount" ).val( ui.values[ 0 ] + "đ" + " - " + ui.values[ 1 ] + "đ");
@@ -214,6 +189,7 @@ if (!empty($_POST['action'])) {
       </script>
     <script>
         function action(action, id) {
+            <?php if (!isset($_SESSION['user'])) echo "alert('Bạn phải đăng nhập trước khi mua hàng'); window.location.assign('login.php');"; else { ?>
             var queryString = "";
             if(action !== "") {
                 switch(action) {
@@ -237,7 +213,17 @@ if (!empty($_POST['action'])) {
                 },
                 error:function (){}
             });
+            <?php } ?>
+
         }
+
     </script>
+   <?php if (isset($_SESSION['message'])) {  ?>
+   <script>
+       alert('<?=$_SESSION['message']?>');
+   </script>
+   <?php
+       unset($_SESSION['message']);
+    } ?>
    </body>
 </html>

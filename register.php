@@ -10,6 +10,7 @@ if (isset($_POST['phone'])) {
     $role = mysqli_real_escape_string($db, "guest");
     mysqli_query($db, "INSERT INTO users(name, email, password, phone, role) VALUES('$name', '$email', '$password', '$phone', '$role')");
     header("Location: ./index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>

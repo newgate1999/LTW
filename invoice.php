@@ -1,5 +1,6 @@
 <?php
 require_once('models.php');
+include('auth.php');
 include('nav_bar.php');
 include('order_controller.php');
 

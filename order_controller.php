@@ -22,9 +22,9 @@ class OrderController
             $result = mysqli_query($db, "INSERT INTO ordered_items (item_id, orders_id, created_at, updated_at, quantity)
         VALUES($item_id, $orders_id, now(), now(), $item_quantity)");
         }
-
-        $result = mysqli_query($db, "INSERT INTO order_logs(status_id, created_at, updated_at, orders_id)
-                                       VALUES(3, now(), now(), $orders_id)");
+        $sql = "INSERT INTO order_logs(status_id, created_at, updated_at, orders_id)
+                                       VALUES(3, now(), now(), $orders_id)";
+        $result = mysqli_query($db, $sql);
         if ($result) {
             unset($_SESSION['cart']);
             $_SESSION['message'] = "Đặt hàng thành công";

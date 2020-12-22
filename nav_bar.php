@@ -11,10 +11,11 @@ if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['username']);
         header("location: index.php");
+        exit();
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Chamb - Responsive E-commerce HTML5 Template</title>
@@ -50,13 +51,11 @@ if (isset($_GET['logout'])) {
                         </button>
                         <a href="index.php" class="navbar-brand"><img src="images/logo.png" alt="" /></a>
                     </div>
-                    <?php if ($_SESSION['logged_in']) { ?>
                     <form class="navbar-form navbar-left web-sh" method="post">
                         <div class="form">
                             <input type="text" id="nav-search" class="form-control" placeholder="Tìm sản phẩm">
                         </div>
                     </form>
-                    <?php } ?>
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <div class="right-nav">
@@ -65,6 +64,7 @@ if (isset($_GET['logout'])) {
                             <div class="login-sr">
                                 <div class="login-signup">
                                     <ul>
+                                        <li> <a href="category.php?type=all"> <span>Danh mục sản phẩm</span> </a> </li>
                                         <li><a href="login.php">Đăng nhập</a></li>
                                         <li><a class="custom-b" href="#">Đăng kí</a></li>
                                     </ul>
@@ -113,13 +113,11 @@ if (isset($_GET['logout'])) {
                                 </ul>
                             </div>
                         </div>
-                        <?php if ($_SESSION['logged_in']) { ?>
                         <div class="login-sr">
                             <div class="login-signup">
-                                    <button class="search_button" onclick="search()">Tìm kiếm</button>
+                                    <button class="search_button" onclick="search()"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                         </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
